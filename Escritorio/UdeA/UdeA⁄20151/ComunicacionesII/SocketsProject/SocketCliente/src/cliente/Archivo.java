@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Jonathan
+ * @author Esteban Montoya
  */
 public class Archivo extends javax.swing.JFrame {
     JFileChooser dlg;

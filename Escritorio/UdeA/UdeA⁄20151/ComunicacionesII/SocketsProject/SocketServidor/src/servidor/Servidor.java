@@ -17,13 +17,13 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Jonathan
+ * @author Esteban Montoya
  */
 public class Servidor {
       
     public static void main(String[] args) throws IOException{
          ServerSocket servidor = null;
-        JOptionPane.showMessageDialog(null, "Servicio Iniciado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Servidor iniciado correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         
         Servidor p = new Servidor();
         servidor = new ServerSocket(5000);
