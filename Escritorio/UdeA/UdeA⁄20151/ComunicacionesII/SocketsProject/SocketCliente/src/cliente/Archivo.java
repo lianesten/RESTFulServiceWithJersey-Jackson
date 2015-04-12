@@ -31,75 +31,82 @@ public class Archivo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        examinarBtn = new javax.swing.JButton();
+        ruta = new javax.swing.JLabel();
+        subirBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Archivo a Enviar");
 
-        jButton1.setText("Archivo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        examinarBtn.setText("Examinar");
+        examinarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                examinarBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Enviar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        subirBtn.setText("Subir Archivo");
+        subirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                subirBtnActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Seleccione archivos que no superen los 90 MB");
+
+        jLabel1.setText(":::Administrador de archivos:::");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
-                        .addGap(0, 33, Short.MAX_VALUE)))
+                        .addGap(115, 115, 115)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(examinarBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(subirBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(examinarBtn)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(ruta, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(subirBtn)
+                .addGap(105, 105, 105))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void examinarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinarBtnActionPerformed
         // TODO add your handling code here:
         dlg = new JFileChooser();
         int opcion = dlg.showOpenDialog(this);
         if(opcion==JFileChooser.APPROVE_OPTION)
         {
             String file = dlg.getSelectedFile().getPath();
-            jLabel1.setText(file);       
+            ruta.setText(file);       
 //            lblSalida.setText(file);
 //            ImageIcon icon = new ImageIcon(file);            
 //            Image img = icon.getImage();            
@@ -111,15 +118,21 @@ public class Archivo extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "Accion cancelada por el usuario");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_examinarBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void subirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subirBtnActionPerformed
         // TODO add your handling code here:
-        CorregirRuta corregir = new CorregirRuta(jLabel1.getText(), "\\", "\\\\");
-        String ruta = corregir.obtenerRutaCorregidaWindows();
-        EnviarArchivo ea = new EnviarArchivo(ruta);
+        //CorregirRuta corregir = new CorregirRuta(ruta.getText(), "\\", "\\\\");
+        //String ruta = corregir.obtenerRutaCorregidaWindows();
+       // if(ruta.getText().equals("")){
+         //   JOptionPane.showMessageDialog(null, "Seleccione un archivo para subir","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+           // return;
+       // }else{
+        EnviarArchivo ea = new EnviarArchivo(ruta.getText());
+        System.out.println(ruta.getText());
         ea.enviarArchivo();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    //}
+    }//GEN-LAST:event_subirBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,9 +170,10 @@ public class Archivo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton examinarBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel ruta;
+    private javax.swing.JButton subirBtn;
     // End of variables declaration//GEN-END:variables
 }

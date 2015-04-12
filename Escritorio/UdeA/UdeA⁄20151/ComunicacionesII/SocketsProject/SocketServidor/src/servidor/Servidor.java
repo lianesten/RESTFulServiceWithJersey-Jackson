@@ -23,19 +23,17 @@ public class Servidor {
       
     public static void main(String[] args) throws IOException{
          ServerSocket servidor = null;
-        JOptionPane.showMessageDialog(null, "Servidor iniciado correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "El Servicio ha sido iniciado correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         
         Servidor p = new Servidor();
-        servidor = new ServerSocket(5000);
-  
+        servidor = new ServerSocket(530);//inicializamos el socket con el puerto 530
+        
         p.iniciarServidor(servidor);
     }
   
     public Servidor() throws IOException
     {
-        // Creamos socket servidor escuchando en el mismo puerto donde se comunica el cliente
-        // en este caso el puerto es el 4400
-            System.out.println("Esperando recepcion de archivos...");
+          //  System.out.println("Esperando recepcion de archivos...");
     }
     
     public  void iniciarServidor(ServerSocket servidor)
@@ -54,7 +52,8 @@ public class Servidor {
                 System.out.println("Recibiendo Archivo "+nombreArchivo);
                 // Creamos flujo de salida, este flujo nos sirve para 
                 // indicar donde guardaremos el archivo
-                FileOutputStream fos = new FileOutputStream("C:\\ArchivosRecibidos\\"+nombreArchivo);
+                
+                FileOutputStream fos = new FileOutputStream("C:\\Users\\julianesten\\Desktop\\Server\\"+nombreArchivo);
                 BufferedOutputStream out = new BufferedOutputStream(fos);
                 BufferedInputStream in = new BufferedInputStream(cliente.getInputStream());
                 // Creamos el array de bytes para leer los datos del archivo

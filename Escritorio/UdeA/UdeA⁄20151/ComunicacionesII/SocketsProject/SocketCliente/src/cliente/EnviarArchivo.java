@@ -25,10 +25,10 @@ public class EnviarArchivo {
           {
          
             // Creamos la direccion IP de la maquina que recibira el archivo
-            InetAddress direccion = InetAddress.getByName( "10.10.62.2" );
+            InetAddress direccion = InetAddress.getByName( "192.168.0.20" );
          
             // Creamos el Socket con la direccion y elpuerto de comunicacion
-            Socket socket = new Socket( direccion, 5000 );
+            Socket socket = new Socket( direccion, 530 );
             socket.setSoTimeout( 2000 );
             socket.setKeepAlive( true );
          
@@ -70,7 +70,7 @@ public class EnviarArchivo {
                 bos.write( buffer[ i ] ); 
             } 
          
-              JOptionPane.showMessageDialog(null,"Archivo Enviado: "+archivo.getName() );
+              JOptionPane.showMessageDialog(null,"Archivo subido correctamente al servidor: "+archivo.getName() );
             // Cerramos socket y flujos
             bis.close();
             bos.close();
@@ -79,7 +79,7 @@ public class EnviarArchivo {
           catch( Exception e )
           {
             System.out.println( e.toString() );
-              System.out.println("Archvo enviado");
+              System.out.println("Archivo enviado");
           }
          
          }
