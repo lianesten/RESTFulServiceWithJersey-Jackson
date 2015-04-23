@@ -21,10 +21,9 @@ public class OperacionesCliente {
         try {
 
             // Creamos la direccion IP de la maquina que recibira el archivo
-       //     InetAddress direccion = InetAddress.getByName("192.168.0.20");
-
+            //     InetAddress direccion = InetAddress.getByName("192.168.0.20");
             // Creamos el Socket con la direccion y elpuerto de comunicacion
-         //   Socket socket = new Socket(direccion, 530);
+            //   Socket socket = new Socket(direccion, 530);
             socket.setSoTimeout(2000);
            // socket.setKeepAlive(true);
 
@@ -44,12 +43,12 @@ public class OperacionesCliente {
             // Enviamos el nombre del archivo 
             dos.writeUTF("almacenar");
             dos.writeUTF(archivo.getName());
-           /* long a = 1234;
-            JOptionPane.showMessageDialog(null, "caracter:"+a);
-            dos.writeLong(a);*/
+            /* long a = 1234;
+             JOptionPane.showMessageDialog(null, "caracter:"+a);
+             dos.writeLong(a);*/
             // Enviamos el tamaño del archivo
             dos.writeInt(tamañoArchivo);
-JOptionPane.showMessageDialog(null, "caracter:"+dos.size());
+           // JOptionPane.showMessageDialog(null, "caracter:" + dos.size());
             // Creamos flujo de entrada para realizar la lectura del archivo en bytes
             FileInputStream fis = new FileInputStream(nombreArchivo);
             BufferedInputStream bis = new BufferedInputStream(fis);
@@ -86,68 +85,48 @@ JOptionPane.showMessageDialog(null, "caracter:"+dos.size());
      Se utiliza flag = false para diferencia la operacion eliminar.
      */
     public void eliminarArchivo(String nombreArchivo) {
+        boolean resultado;
         try {
             DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
             dos.writeUTF("eliminar");
             dos.writeUTF(nombreArchivo);
             dos.flush();
             Thread.sleep(2000);
+            DataInputStream is = new DataInputStream(socket.getInputStream());
+            resultado=is.readBoolean();
+            if(resultado){
+                JOptionPane.showMessageDialog(null, "Archivo: "+nombreArchivo+" ha sido elimiando correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "Archivo: "+nombreArchivo+" no existe en el servidor");
+            }
+            
             //DataInputStream istream = new DataInputStream(socket.getInputStream());
             //socket.close();
-
 
         } catch (Exception e) {
             System.err.println("excepcion: " + e.toString());
             e.printStackTrace();
         }
-        
-        
-        
-       /* System.out.println("Entro a la funcion eliminar");
-        boolean flag = false;
-        try {
-            OutputStream os = socket.getOutputStream();
-            ObjectOutputStream s = new ObjectOutputStream(os);
-            s.writeObject(nombreArchivo);
-            s.writeBoolean(flag);
-            s.flush();
-            Thread.sleep(2000);
-            DataInputStream istream = new DataInputStream(socket.getInputStream());
-            flag = istream.readBoolean();
-            System.out.println("flag: " + flag);
-            socket.close();
-            if (flag) {
-                JOptionPane.showMessageDialog(null, "Archivo: " + nombreArchivo + " ha sido elimiando correctamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "Archivo: " + nombreArchivo + " no existe en el servidor");
-            }
-
-        } catch (Exception e) {
-            System.err.println("excepcion: " + e.toString());
-            e.printStackTrace();
-        }*/
     }
 
     /*
      *Este metodo recibe un Array tipo String donde cada elemento corresponde a el nombre de un archivo almacenado en el servidor.
      */
-    /* public void listarArchivos(){
-     String lista;
-     try{
-     OutputStream os = socket.getOutputStream();
-     ObjectOutputStream s = new ObjectOutputStream(os);
-     s.writeObject("listar");
-     s.flush();
-                 
-     DataInputStream is = new DataInputStream(socket.getInputStream());
-     lista = is.readUTF() ;
-     socket.close(); 
-     JOptionPane.showMessageDialog(null, "Archivo: "+lista);
-             
-             
-     }catch(Exception e){
-     System.err.println("excepcion: "+e.toString());
-     e.printStackTrace();
-     }
-     }*/
+    public void listarArchivos() {
+        String lista;
+        try {
+            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+            dos.writeUTF("listar");
+            dos.flush();
+
+            DataInputStream is = new DataInputStream(socket.getInputStream());
+            lista = is.readUTF();
+            JOptionPane.showMessageDialog(null, "Archivo: " + lista);
+            socket.close();
+
+        } catch (Exception e) {
+            System.err.println("excepcion: " + e.toString());
+            e.printStackTrace();
+        }
+    }
 }

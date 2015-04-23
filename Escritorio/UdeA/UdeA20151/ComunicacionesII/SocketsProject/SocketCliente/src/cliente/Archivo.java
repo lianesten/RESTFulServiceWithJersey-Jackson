@@ -7,6 +7,9 @@
 package cliente;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -201,18 +204,16 @@ public class Archivo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        File fichero = new File("/home/julianesten/Escritorio");
-        String[] ficheros = fichero.list();//Tenemos todos los archivos del fichero dado
-        if(ficheros==null){
-            System.out.println("No hay archivos en el servidor");
+        try {
+            OperacionesCliente obj = new OperacionesCliente(ip);
+            obj.listarArchivos();
             
-        }else{
-              for(int i=0;i<ficheros.length;i++){
-                  System.out.println(ficheros[i]);
-              }
-                  
-            }
+            
+            
+
+        } catch (IOException ex) {
+            Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

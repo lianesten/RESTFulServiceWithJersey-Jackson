@@ -17,17 +17,13 @@ import javax.swing.JOptionPane;
 public class OperacionesServidor {
     private final String rutaFichero= "C:\\Users\\julianesten\\Desktop\\Server\\";
     
-    public void EliminarArchivo(String nombreArchivo){
-        JOptionPane.showMessageDialog(null, "Entro a funcion eliminar!!!!");
+    public boolean EliminarArchivo(String nombreArchivo){
         String ruta = this.rutaFichero+nombreArchivo;
         File fichero = new File(ruta);
         if(fichero.delete()){
-            JOptionPane.showMessageDialog(null, "Archivo: "+nombreArchivo+" ha sido elimiando correctamente");
-            //return true;
+            return true;
         }else{
-            
-            JOptionPane.showMessageDialog(null, "Archivo: "+nombreArchivo+" no existe en el servidor");
-            //return false;
+            return false;
         }
     
     }
@@ -35,14 +31,18 @@ public class OperacionesServidor {
     Este metodo obtiene los ficheros almacenados en el servidor y los manda al lado del cliente para ser msotrados
     
     */
-    public String[] obtenerFicheros(){
+    public String listarArchivos(){
         File fichero = new File(this.rutaFichero);
         String[] ficheros = fichero.list();//Tenemos todos los archivos del fichero dado
+        String resultado = "";
         if(ficheros==null){
-            System.out.println("No hay archivos en el servidor");
-            return null;
+            resultado = "No hay archivos en el servidor";
+            return resultado;
         }else{
-              return ficheros; 
+            for (String fichero1 : ficheros) {
+                resultado = resultado +"\n" + fichero1;
+            }
+              return resultado; 
             }
                 
                 
